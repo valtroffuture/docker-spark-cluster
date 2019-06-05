@@ -9,3 +9,6 @@ ENV SPARK_MASTER_LOG /spark/logs
 EXPOSE 8080 7077 6066
 
 CMD ["/bin/bash", "/start-master.sh"]
+
+# Start Thrift Server
+CMD /spark/sbin/start-thriftserver.sh
