@@ -66,6 +66,23 @@ services:
     volumes:
        - /mnt/spark-apps:/opt/spark-apps
        - /mnt/spark-data:/opt/spark-data
+  spark-thrift-1:
+    image: spark-thrift:2.3.1
+    container_name: spark-thrift-1
+    hostname: spark-thrift-1
+    depends_on:
+      - spark-master
+    ports:
+      - "8084:8081"
+    env_file: ./env/spark-worker.sh
+    environment:
+      - "SPARK_LOCAL_IP=spark-thrift-1"
+    networks:
+      spark-network:
+        ipv4_address: 10.5.0.6
+    volumes:
+       - /mnt/spark-apps:/opt/spark-apps
+       - /mnt/spark-data:/opt/spark-data        
 networks:
   spark-network:
     driver: bridge
